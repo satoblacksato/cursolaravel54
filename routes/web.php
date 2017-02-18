@@ -130,7 +130,7 @@ INICIO DEL PROYECTO
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-Route::group(['prefix'=>'admin' , 'as'=>'admin.'],function(){
-	//Route::resource('role','Cruds\RoleController');
+Route::group(['prefix'=>'admin' , 'as'=>'admin.','middleware' => ['auth']],function(){
+	Route::resource('role','Cruds\RoleController');
 	Route::resource('category','Cruds\CategoryController');
 });
