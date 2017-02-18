@@ -77,11 +77,13 @@
                 </div>
             </div>
         </nav>
-
+        {!! AlertManager::render() !!}
+        @include('componentes.errors')
         @yield('content')
     </div>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script src="/js/util.js"></script>
 </body>
 </html>

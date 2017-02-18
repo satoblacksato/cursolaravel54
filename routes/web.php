@@ -115,10 +115,7 @@ Resource except
 */
 //Route::resource('resource','ResourceController',['except'=>'index']);
 
-Route::group(['prefix'=>'admin' , 'as'=>'admin.'],function(){
-	Route::resource('role','RoleController');
-	Route::resource('category','CategoryController');
-});
+
 
 
 
@@ -127,3 +124,13 @@ Route::get('/vista-simple', 'PruebaController@getVista')->name('vistasimple');
 
 
 
+/*
+INICIO DEL PROYECTO
+*/
+
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+Route::group(['prefix'=>'admin' , 'as'=>'admin.'],function(){
+	//Route::resource('role','Cruds\RoleController');
+	Route::resource('category','Cruds\CategoryController');
+});
