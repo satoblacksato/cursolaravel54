@@ -21,7 +21,6 @@
  					  {!! Form::submit('Guardar', ['class' => 'btn btn-success btn-xs']) !!}
  					   {{ link_to_route('admin.category.index', 'REGRESAR',[], ['class'=>'btn btn-warning btn-xs']) }}
 
- 					 
 
 					{!! Form::close()!!}
                 </div>
@@ -29,5 +28,6 @@
         </div>
    </div>
 </div>
+
 
 @endsection

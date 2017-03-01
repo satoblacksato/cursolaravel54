@@ -134,3 +134,20 @@ Route::group(['prefix'=>'admin' , 'as'=>'admin.','middleware' => ['auth']],funct
 	Route::resource('role','Cruds\RoleController');
 	Route::resource('category','Cruds\CategoryController');
 });
+
+Route::group(['prefix'=>'articles' , 'as'=>'articles.','middleware' => ['auth']],function(){
+
+	Route::resource('book','BookController');
+	Route::get('book-datatable','BookController@datatable');
+	
+
+});
+
+Route::group(['middleware' => ['auth']],function(){
+Route::get('books/{file}', function ($file = null) { 
+ 	$url = storage_path() . "/app/public/books/{$file}"; 
+ 	if (file_exists($url)) {
+ 		return Response::download($url);
+ 	}
+});
+});

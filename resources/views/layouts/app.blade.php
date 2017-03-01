@@ -12,7 +12,10 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-
+    <link  href="/css/fileinput.min.css" rel="stylesheet">
+    <link  href="/plugins/trumbowyg/ui/trumbowyg.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<link  href="/css/datatable.css" rel="stylesheet">
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -54,7 +57,16 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
 
-
+ <li >
+                                <a href="/logs"  role="button" >
+                                    Logs
+                                </a>
+ </li>
+ <li >
+                                <a href="{{ route('articles.book.index') }}"  role="button" >
+                                    Libros
+                                </a>
+ </li>
  <li >
                                 <a href="{{ route('admin.role.index') }}"  role="button" >
                                     Roles
@@ -97,7 +109,17 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
-    <script src="/js/util.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/js/app.js"></script>
+<script  src="/js/fileinput.min.js"></script>
+<script  src="/plugins/trumbowyg/trumbowyg.min.js"></script>
+<script  src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+<script  src="/plugins/riot/riot.min.js"></script>
+<script  src="/plugins/riot/riot-compiler.min.js"></script>
+<script src="/js/util.js"></script>
+ 
+@yield('masterjs')
+
 </body>
 </html>

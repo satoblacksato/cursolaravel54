@@ -16,6 +16,7 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
+
          $arrRoles=Role::orderBy('name','asc')->where('name','like',"%$request->scope%")->paginate(2);
         return  view('cruds.role.index')->with(['roles'=>$arrRoles,'scope'=>$request->scope]);
     }
