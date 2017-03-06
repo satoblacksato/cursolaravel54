@@ -1,4 +1,4 @@
-                                                                                               {
+{
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.6.4",
         "barryvdh/laravel-debugbar": "^2.3",
-        "genealabs/phpgmaps": "^0.4.0",
+        "cviebrock/eloquent-sluggable": "^4.2",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "rap2hpoutre/laravel-log-viewer": "^0.8.0",

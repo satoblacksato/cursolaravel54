@@ -171,8 +171,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
        Yajra\Datatables\DatatablesServiceProvider::class,
-        GeneaLabs\Phpgmaps\PhpgmapsServiceProvider::class,
-        
+        Cviebrock\EloquentSluggable\ServiceProvider::class,     
 
 
 
@@ -236,7 +235,6 @@ return [
         'Access' => Styde\Html\Facades\Access::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'AlertManager'=>Facades\App\Facades\AlertManager::class,
-        'Gmaps' => GeneaLabs\Phpgmaps\Facades\PhpgmapsFacade::class,
 
 
     ],

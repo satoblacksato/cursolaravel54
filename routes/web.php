@@ -11,13 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/','HomeController@welcome')->name('welcome');
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('category-books/{slug}','HomeController@categoryBooks')->name('categorybook');
+
+
+
+
 
 
 //PRACTICA DE RUTAS
@@ -143,11 +149,13 @@ Route::group(['prefix'=>'articles' , 'as'=>'articles.','middleware' => ['auth']]
 
 });
 
-Route::group(['middleware' => ['auth']],function(){
+
 Route::get('books/{file}', function ($file = null) { 
  	$url = storage_path() . "/app/public/books/{$file}"; 
  	if (file_exists($url)) {
  		return Response::download($url);
  	}
 });
-});
+
+
+

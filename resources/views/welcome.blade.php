@@ -4,51 +4,14 @@
     <meta charset="utf-8">
     <title>{{ config('app.name')}}</title>
     <meta name="description" content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Codeply">
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/animate.min.css" />
     <link rel="stylesheet" href="./css/ionicons.min.css" />
     <link rel="stylesheet" href="./css/styles.css" />
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeEx1ppGMA5OfH64Sm9sTfbIMAfg1EMfE&callback=initMap"
-        async defer>
-    </script>
-    <script type="text/javascript">
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 6
-  });
-  var infoWindow = new google.maps.InfoWindow({map: map});
-
-  // Try HTML5 geolocation.
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('Location found.');
-      map.setCenter(pos);
-    }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
-}
-
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
-}
-
-    </script>
+    
   </head>
   <body>
     <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
@@ -60,19 +23,17 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#first"><i class="ion-ios-analytics-outline"></i> Landing Zero</a>
+                <a class="navbar-brand page-scroll" href="#first"><i class="ion-ios-analytics-outline"></i> Librer&iacute;a Laravel</a>
             </div>
             <div class="navbar-collapse collapse" id="bs-navbar">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a class="page-scroll" href="#one">Intro</a>
+                        <a class="page-scroll" href="#one">Geolocalizaci&oacute;n</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#two">Highlights</a>
+                        <a class="page-scroll" href="#two">Categor&iacute;as</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#three">Gallery</a>
-                    </li>
+                    
                     <li>
                         <a class="page-scroll" href="#four">Features</a>
                     </li>
@@ -82,7 +43,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="#aboutModal">About</a>
+                        <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="#aboutModal">Info</a>
                     </li>
                 </ul>
             </div>
@@ -104,23 +65,21 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                          <a href="{{ url('/register') }}" class="btn btn-danger btn-xl ">Registro</a>
                     @endif
                 @endif
-                <div id="map" style="position: relative; overflow: hidden;"></div>
+                <div id="map"></div>
             </div>
         </div>
-        <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background">
-            <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
-        </video>
+     
     </header>
     <section class="bg-primary" id="one">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 text-center">
-                    <h2 class="margin-top-0 text-primary">Built On The Bootstrap Grid</h2>
+                    <h2 class="margin-top-0 text-primary">MI GEOLOCALIZACI&Oacute;N</h2>
                     <br>
-                    <p class="text-faded">
-                        Bootstrap's responsive grid comes in 4 sizes or "breakpoints": tiny (xs), small(sm), medium(md) and large(lg). These 4 grid sizes enable you create responsive layouts that behave accordingly on different devices.
-                    </p>
-                    <a href="#three" class="btn btn-default btn-xl page-scroll">Learn More</a>
+                    
+                      <div id="mapa"></div>
+                    
+                   
                 </div>
             </div>
         </div>
@@ -129,117 +88,26 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="margin-top-0 text-primary">Flexible Layouts</h2>
+                    <h2 class="margin-top-0 text-primary">Categor&iacute;as Disponibles</h2>
                     <hr class="primary">
                 </div>
             </div>
         </div>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 text-center">
-                    <div class="feature">
-                        <i class="icon-lg ion-android-laptop wow fadeIn" data-wow-delay=".3s"></i>
-                        <h3>Responsive</h3>
-                        <p class="text-muted">Your site looks good everywhere</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 text-center">
-                    <div class="feature">
-                        <i class="icon-lg ion-social-sass wow fadeInUp" data-wow-delay=".2s"></i>
-                        <h3>Customizable</h3>
-                        <p class="text-muted">Easy to theme and customize with SASS</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 text-center">
-                    <div class="feature">
-                        <i class="icon-lg ion-ios-star-outline wow fadeIn" data-wow-delay=".3s"></i>
-                        <h3>Consistent</h3>
-                        <p class="text-muted">A mature, well-tested, stable codebase</p>
-                    </div>
-                </div>
+            <div class="row text-center">
+                @foreach($categories as $category)
+                      @component('componentes.thumbnail')
+                            @slot('image','<i class="icon-lg ion-cube  text-danger" ></i>')
+                            @slot('title', $category->name)
+                            @slot('description', $category->description)
+                            @slot('route',route('categorybook',$category->slug))
+                            @slot('width','col-sm-6 col-md-3')
+                      @endcomponent
+                @endforeach
             </div>
         </div>
     </section>
-    <section id="three" class="no-padding">
-        <div class="container-fluid">
-            <div class="row no-gutter">
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./assets/deer.jpg">
-                        <img src="./assets/deer.jpg" class="img-responsive" alt="Image 1">
-                        <div class="gallery-box-caption">
-                            <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./assets/beach.jpg">
-                        <img src="./assets/beach.jpg" class="img-responsive" alt="Image 2">
-                        <div class="gallery-box-caption">
-                            <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="clearfix hidden-lg"> </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./assets/lake.jpg">
-                        <img src="./assets/lake.jpg" class="img-responsive" alt="Image 3">
-                        <div class="gallery-box-caption">
-                            <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./assets/bike.jpg">
-                        <img src="./assets/bike.jpg" class="img-responsive" alt="Image 4">
-                        <div class="gallery-box-caption">
-                            <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="clearfix hidden-lg"> </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./assets/city.jpg">
-                        <img src="./assets/city.jpg" class="img-responsive" alt="Image 5">
-                        <div class="gallery-box-caption">
-                            <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./assets/colors.jpg">
-                        <img src="./assets/colors.jpg" class="img-responsive" alt="Image 6">
-                        <div class="gallery-box-caption">
-                            <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <section class="container-fluid" id="four">
         <div class="row">
             <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
@@ -424,16 +292,17 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <h2 class="text-center">Landing Zero Theme</h2>
+                <h2 class="text-center">Curso Laravel 5.4</h2>
                 <h5 class="text-center">
-                    A free, responsive landing page theme built by BootstrapZero.
+                    Es un sitio realizado en laravel
                 </h5>
                 <p class="text-justify">
-                    This is a single-page Bootstrap template with a sleek dark/grey color scheme, accent color and smooth scrolling.
-                    There are vertical content sections with subtle animations that are activated when scrolled into view using the jQuery WOW plugin. There is also a gallery with modals
-                    that work nicely to showcase your work portfolio. Other features include a contact form, email subscribe form, multi-column footer. Uses Questrial Google Font and Ionicons.
+                   Este curso sirve para conocer el framework de laravel, en el cual aprenderemos varias tecnicas
+                   que serviran para la construcci&oacute;n de nuestros sitios.
                 </p>
-                <p class="text-center"><a href="http://www.bootstrapzero.com">Download at BootstrapZero</a></p>
+                <p class="text-center"><a href="http://www.ascomsa.net">Ascomsa</a> <br/>
+<a href="https://twitter.com/laravelecuador">Laravel Ecuador</a> 
+                </p>
                 <br/>
                 <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true"> OK </button>
             </div>
@@ -454,12 +323,56 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         </div>
     </div>
     <!--scripts loaded here -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/wow.js"></script>
     <script src="js/scripts.js"></script>
+
+ <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+ <style type="text/css">
+   #mapa{
+    width: 600px;
+    height: 300px;
+   }
+ </style>
+    <script type="text/javascript">
+      $(function(){
+          navigator.geolocation.getCurrentPosition(success, error);
+
+
+            function success(position){
+
+                var lat= position.coords.latitude;
+                var long=position.coords.longitude;
+
+                var latlng=new google.maps.LatLng(lat,long);
+
+                //Create the map
+                var mapOptions={
+                    zoom:14,//0-18
+                    center:latlng,
+                    mapTypeId:google.maps.MapTypeId.ROADMAP
+                };
+
+                var map=new google.maps.Map(document.getElementById("mapa"), mapOptions);
+
+                var marker=new google.maps.Marker({
+                    position:latlng,
+                    map:map,
+                    title:"AQUI ME ENCUENTRO",
+                    draggable:false,
+                    animation:google.maps.Animation.DROP
+                });
+
+          }
+
+          function error(){
+            //  alert("no pudo establecer geolocalizacion");
+              console.log("no pudo establecer geolocalizacion");
+          }
+
+      });
+    </script>
+  
   </body>
 </html>
-
-

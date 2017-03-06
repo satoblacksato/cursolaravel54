@@ -1,2 +1,2 @@
 {!! Field::text('name',$name,$parameters) !!}
-{!! Field::text('description',$description,$parameters) !!}
+{!! Field::textarea('description',$description,$parameters) !!}
