@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::get('category-books/{slug}','HomeController@categoryBooks')->name('categorybook');
-
+Route::get('category-books/{categoryslug}/{bookslug}','HomeController@categoryBooksDetail')->name('categorybookdetail');
 
 
 

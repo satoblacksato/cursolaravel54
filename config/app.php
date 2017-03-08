@@ -235,6 +235,7 @@ return [
         'Access' => Styde\Html\Facades\Access::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'AlertManager'=>Facades\App\Facades\AlertManager::class,
+        'Carbon'=>Carbon\Carbon::class
 
 
     ],

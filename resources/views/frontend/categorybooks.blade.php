@@ -20,7 +20,6 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                
                 <div class="row text-center">
                     <h4 class="text-danger text-center"><b>LIBROS PUBLICOS</b></h4>
                     <hr/>
@@ -30,7 +29,10 @@
                                 @slot('image',' <img src="/books/'.$book->image.'" class="image" />')
                                 @slot('title', $book->title)
                                 @slot('description', $book->description)
-                                @slot('route','#')
+                                @slot('route',route('categorybookdetail',[$objCategory->slug,$book->slug]))
+                                @slot('slot')
+                                    <b>Creado: </b> {{ $book->created_at->diffForHumans() }}
+                                @endslot
                              @endcomponent
                          @empty
                             <p>No hay libros p&uacute;blicos por presentar</p>
@@ -47,6 +49,9 @@
                                 @slot('title', $book->title)
                                 @slot('description', $book->description)
                                 @slot('route','#')
+                                  @slot('slot')
+                                    <b>Creado: </b> {{ $book->created_at->diffForHumans() }}
+                                @endslot
                              @endcomponent
                        @empty
                             @if(Auth::guest())
@@ -56,8 +61,10 @@
                             @endif
                         @endforelse
                 </div>
+                
                </div>
             </div>
+
         </div>
         <div class="col-md-4 ">
             <div class="row">

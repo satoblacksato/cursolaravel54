@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use  App\Book;
 use Auth;
 
 class HomeController extends Controller
@@ -15,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['welcome','categoryBooks']);
+        $this->middleware('auth')->only(['index']);
     }
 
     /**
@@ -50,5 +51,17 @@ class HomeController extends Controller
            }
 
         return view('frontend.categorybooks',compact('objCategory','publics','privates','scope'));
+    }
+
+    public function categoryBooksDetail(Request $request){
+            $objBook=Book::findBySlugOrFail($request->bookslug);
+
+           /*
+            $objCategory=Category::findBySlugOrFail($request->categoryslug);
+            $objBook=Book::where('category_id','=',$objCategory->id)->where('slug','=',$request->bookslug)->first();
+            $this->notfound($objBook); 
+            */
+      return view('frontend.categorybooksdetail',compact('objBook'));       
+
     }
 }
