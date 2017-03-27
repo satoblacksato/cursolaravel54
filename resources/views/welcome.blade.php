@@ -35,10 +35,10 @@
                     </li>
                     
                     <li>
-                        <a class="page-scroll" href="#four">Features</a>
+                        <a class="page-scroll" href="#four">Caracter&iacute;sticas</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#last">Contact</a>
+                        <a class="page-scroll" href="#last">Contactanos</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -50,6 +50,7 @@
         </div>
     </nav>
     <header id="first">
+
         <div class="header-content">
             <div class="inner">
                 <h1 class="cursive">Bienvenidos, a Book Laravel</h1>
@@ -70,6 +71,7 @@
         </div>
      
     </header>
+        @include('componentes.errors')
     <section class="bg-primary" id="one">
         <div class="container">
             <div class="row">
@@ -111,12 +113,12 @@
     <section class="container-fluid" id="four">
         <div class="row">
             <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                <h2 class="text-center text-primary">Features</h2>
+                <h2 class="text-center text-primary">Caracter&iacute;sticas</h2>
                 <hr>
                 <div class="media wow fadeInRight">
                     <h3>Simple</h3>
                     <div class="media-body media-middle">
-                        <p>What could be easier? Get started fast with this landing page starter theme.</p>
+                        <p>Utilizaci&oacute;n de laravel 5.4 acompañado de componentes actuales.</p>
                     </div>
                     <div class="media-right">
                         <i class="icon-lg ion-ios-bolt-outline"></i>
@@ -129,14 +131,14 @@
                         <a href="#alertModal" data-toggle="modal" data-target="#alertModal"><i class="icon-lg ion-ios-cloud-download-outline"></i></a>
                     </div>
                     <div class="media-body media-middle">
-                        <p>Yes, please. Grab it for yourself, and make something awesome with this.</p>
+                        <p>Los componenetes y temas utilizados en el proyecto son totalmente gratuitos</p>
                     </div>
                 </div>
                 <hr>
                 <div class="media wow fadeInRight">
-                    <h3>Unique</h3>
+                    <h3>Adaptable</h3>
                     <div class="media-body media-middle">
-                        <p>Because you don't want your Bootstrap site, to look like a Bootstrap site.</p>
+                        <p>Dise&ntilde;o adaptable a diferentes pantallas.</p>
                     </div>
                     <div class="media-right">
                         <i class="icon-lg ion-ios-snowy"></i>
@@ -144,32 +146,24 @@
                 </div>
                 <hr>
                 <div class="media wow fadeIn">
-                    <h3>Popular</h3>
+                    <h3>Componentes</h3>
                     <div class="media-left">
                         <i class="icon-lg ion-ios-heart-outline"></i>
                     </div>
                     <div class="media-body media-middle">
-                        <p>There's good reason why Bootstrap is the most used frontend framework in the world.</p>
+                        <p>Componentes usados: bootsrap, CronJobs, Maps, Datatable, Jquery, SweetAlert, HighCharts, Ajax.</p>
                     </div>
                 </div>
                 <hr>
-                <div class="media wow fadeInRight">
-                    <h3>Tested</h3>
-                    <div class="media-body media-middle">
-                        <p>Bootstrap is matured and well-tested. It's a stable codebase that provides consistency.</p>
-                    </div>
-                    <div class="media-right">
-                        <i class="icon-lg ion-ios-flask-outline"></i>
-                    </div>
-                </div>
+               
             </div>
         </div>
     </section>
     <aside class="bg-dark">
         <div class="container text-center">
             <div class="call-to-action">
-                <h2 class="text-primary">Get Started</h2>
-                <a href="http://www.bootstrapzero.com/bootstrap-template/landing-zero" target="ext" class="btn btn-default btn-lg wow flipInX">Free Download</a>
+                <h2 class="text-primary">Herramientas</h2>
+                <a href="http://www.bootstrapzero.com/bootstrap-template/landing-zero" target="ext" class="btn btn-default btn-lg wow flipInX">Herramientas y/o Componentes Utilizados de BootstrapZero</a>
             </div>
             <br>
             <hr/>
@@ -199,31 +193,32 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="margin-top-0 wow fadeIn">Get in Touch</h2>
+                    <h2 class="margin-top-0 wow fadeIn">Env&iacute;o</h2>
                     <hr class="primary">
-                    <p>We love feedback. Fill out the form below and we'll get back to you as soon as possible.</p>
+                    <p>Env&iacute;ale un mensaje al administrador</p>
                 </div>
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <form class="contact-form row">
+                    <form class="contact-form row" method="post" action="{{ route('emailcontact')}}">
+                    {!! csrf_field() !!}
                         <div class="col-md-4">
                             <label></label>
-                            <input type="text" class="form-control" placeholder="Name">
+                            <input type="text"  name="nombres" class="form-control" placeholder="Nombres" required="">
                         </div>
                         <div class="col-md-4">
                             <label></label>
-                            <input type="text" class="form-control" placeholder="Email">
+                            <input type="text" name="email" class="form-control" placeholder="Email" required="">
                         </div>
                         <div class="col-md-4">
                             <label></label>
-                            <input type="text" class="form-control" placeholder="Phone">
+                            <input type="text" name="telefonos" class="form-control" placeholder="Tel&eacute;fono" required="">
                         </div>
                         <div class="col-md-12">
                             <label></label>
-                            <textarea class="form-control" rows="9" placeholder="Your message here.."></textarea>
+                            <textarea class="form-control" rows="9" name="mensaje" placeholder="Tu mensaje" required=""></textarea>
                         </div>
                         <div class="col-md-4 col-md-offset-4">
                             <label></label>
-                            <button type="button" data-toggle="modal" data-target="#alertModal" class="btn btn-primary btn-block btn-lg">Send <i class="ion-android-arrow-forward"></i></button>
+                            <button type="submit"  class="btn btn-primary btn-block btn-lg">Enviar <i class="ion-android-arrow-forward"></i></button>
                         </div>
                     </form>
                 </div>
@@ -232,45 +227,7 @@
     </section>
     <footer id="footer">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-6 col-sm-3 column">
-                    <h4>Information</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="">Products</a></li>
-                        <li><a href="">Services</a></li>
-                        <li><a href="">Benefits</a></li>
-                        <li><a href="">Developers</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-6 col-sm-3 column">
-                    <h4>About</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Delivery Information</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-sm-3 column">
-                    <h4>Stay Posted</h4>
-                    <form>
-                        <div class="form-group">
-                          <input type="text" class="form-control" title="No spam, we promise!" placeholder="Tell us your email">
-                        </div>
-                        <div class="form-group">
-                          <button class="btn btn-primary" data-toggle="modal" data-target="#alertModal" type="button">Subscribe for updates</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-xs-12 col-sm-3 text-right">
-                    <h4>Follow</h4>
-                    <ul class="list-inline">
-                      <li><a rel="nofollow" href="" title="Twitter"><i class="icon-lg ion-social-twitter-outline"></i></a>&nbsp;</li>
-                      <li><a rel="nofollow" href="" title="Facebook"><i class="icon-lg ion-social-facebook-outline"></i></a>&nbsp;</li>
-                      <li><a rel="nofollow" href="" title="Dribble"><i class="icon-lg ion-social-dribbble-outline"></i></a></li>
-                    </ul>
-                </div>
-            </div>
+            
             <br/>
             <span class="pull-right text-muted small"><a href="http://www.bootstrapzero.com">Landing Zero by BootstrapZero</a> ©2015 Company</span>
         </div>

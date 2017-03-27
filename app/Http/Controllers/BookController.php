@@ -9,6 +9,7 @@ use Storage;
 use File;
 use Facades\App\Facades\AlertManager;
 use Yajra\Datatables\Facades\Datatables;
+use DB;
 
 class BookController extends Controller
 {
@@ -40,9 +41,11 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-         $this->validate($request,[
+       
+
+        $this->validate($request,[
                 'title'=> "required|min:3|max:50|string",
-                'description'=>'required|min:3|max:50|string',
+                'description'=>'required|min:3|max:500|string',
                 'category_id'=>'required|numeric',
                 'private'=>'required|numeric|in:0,1',
                 'image'=>'required|file'
@@ -52,15 +55,15 @@ class BookController extends Controller
          $namefile=time().".".$file->getClientOriginalExtension();
 
          Storage::disk('books')->put($namefile, File::get($file));
+        
          $objBook=new Book($request->all());
          $objBook->image=$namefile;
          $objBook->user_id=\Auth::user()->id;
          $objBook->save();
 
+
                 AlertManager::success('Registro guardado correctamente');
        return  redirect()->route('articles.book.index');
-
-
 
     }
 
@@ -85,6 +88,9 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
+
+       $this->authorize('update', $book);
+
        return view('articles.books.edit')->with([
         'book'=>$book,
         'categories'=>Category::pluck('name','id')->toArray()]);
@@ -99,36 +105,35 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-         $this->validate($request,[
-                'title'=> "required|min:3|max:50|string",
-                'description'=>'required|min:3|max:50|string',
-                'category_id'=>'required|numeric',
-                'private'=>'required|numeric|in:0,1',
-                'image'=>'file'
-            ]);
+        $this->authorize('update', $book);
 
-         $file=$request->file('image');
+        DB::transaction(function()use($request,$book){
+                 $this->validate($request,[
+                        'title'=> "required|min:3|max:50|string",
+                        'description'=>'required|min:3|max:500|string',
+                        'category_id'=>'required|numeric',
+                        'private'=>'required|numeric|in:0,1',
+                        'image'=>'file'
+                    ]);
 
-        if($file!=null){
-             $namefile=time().".".$file->getClientOriginalExtension();
-              Storage::disk('books')->delete($book->image);
-              Storage::disk('books')->put($namefile, File::get($file));
+                 $file=$request->file('image');
+                if($file!=null){
+                     $namefile=time().".".$file->getClientOriginalExtension();
+                      Storage::disk('books')->delete($book->image);
+                      Storage::disk('books')->put($namefile, File::get($file));
 
-         $book->image=$namefile;
-        }
-                
+                 $book->image=$namefile;
+                }
+                 $book->title=$request->title;
+                 $book->description=$request->description;
+                 $book->category_id=$request->category_id;
+                 $book->private=$request->private;
+                 $book->user_id=\Auth::user()->id;
+                 $book->save();
+        });
         
-         $book->title=$request->title;
-         $book->description=$request->description;
-         $book->category_id=$request->category_id;
-         $book->private=$request->private;
-      
-         $book->user_id=\Auth::user()->id;
-         $book->save();
-
                 AlertManager::success('Registro actualizado correctamente');
        return  redirect()->route('articles.book.index');
-
     }
 
     /**
@@ -151,11 +156,12 @@ public function datatable(Request $request){
 
 
       return  Datatables::of(
-                    Book::where('user_id','=',\Auth::user()->id)
-                            ->select('id','title','description')->get()
+                    Book::select('id','title','description','user_id')->get()
         )
            ->addColumn('actions', function ($query) {
-                return  '<a href="/articles/book/'.$query->id.'/edit"  class="btn btn-primary btn-xs" >EDT</a>&nbsp;<a href="#"
+                return  "
+                <a href='/articles/book/'.$query->id.'/edit'  class='btn btn-primary btn-xs' >EDT</a>
+                &nbsp;".'<a href="#"
                 onclick="viewModal('.$query->id.')"   class="btn btn-warning btn-xs" >VER</a>
                    
                    <form action="/articles/book/'.$query->id.'" method="POST">

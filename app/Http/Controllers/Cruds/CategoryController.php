@@ -84,7 +84,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
            $this->validate($request,[
-                'name'=> "required|min:3|max:50|string|unique:categories,name,{$category->id},id",
+                'name'=> "required|min:3|max:50|string|unique:categories,name,{$category->id},id,deleted_at,NULL",
                 'description'=>'required|min:3|max:50|string'
             ]);
         $category->fill($request->all());

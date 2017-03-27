@@ -3,9 +3,8 @@
 @section('content')
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 ">
+
+        <div class="col-md-12 ">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
@@ -66,26 +65,6 @@
             </div>
 
         </div>
-        <div class="col-md-4 ">
-            <div class="row">
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">Acciones</div>
-                        <div class="panel-body text-center">
-                            <a class="btn btn-primary" href="{{route('welcome')}}">Inicio</a>
-                        </div>
-                    </div>
-            </div>
-             <div class="row">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">Lista Categor&iacute;as</div>
-                        <div class="panel-body">
-                            
-                        </div>
-                    </div>
-            </div>
-        </div>
-   </div>
-</div>
 
 
 @endsection

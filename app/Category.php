@@ -44,4 +44,23 @@ class Category extends Model
        return strtoupper($value);
     }
 
+    //relaciones
+    public function user_categories(){
+        return $this->hasMany(CategoryUser::class,'category_id','id');
+    }
+
+
+ //relaciones
+    public function user_categories_filter($user){
+        $count= $this->hasMany(CategoryUser::class,'category_id','id')->where('user_id','=',$user)->count();
+        if($count>0){
+            return true;
+        }
+        return false;
+    }
+    
+    
+
+
+
 }

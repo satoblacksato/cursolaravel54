@@ -19,6 +19,11 @@ class Book extends Model
     ];
 
 
+        protected $events=[
+            'updated' => Events\BookActionEvent::class,
+        ];
+
+
  /**
      * Return the sluggable configuration array for this model.
      *
