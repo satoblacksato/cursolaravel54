@@ -11,14 +11,43 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::post('/emailcontact','HomeController@sendEmailContact')->name('emailcontact');
+
+Route::get('/sendmail',function(){
+
+	Mail::send('emails.emailsuscripcion', ['user'=>'usuario parametro'], function ($message) {
+	    $message->to(env('MAIL_ADMIN'));
+	    $message->subject('test email');
+	    $message->priority(4);
+	    $message->attach('C:/laragon/www/cursolaravel/public/img/city.jpg');
+	});
+	return "ENVIO EXITOSO";
+
 });
+
+Route::get('/sendmark',function(){
+	Mail::to(env('MAIL_ADMIN'))->send(new App\Mail\UserRegisterMark(App\User::find(3)));
+});
+
+
+
+Route::get('/','HomeController@welcome')->name('welcome');
+
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('category-books/{slug}','HomeController@categoryBooks')->name('categorybook');
+Route::get('category-books/{categoryslug}/{bookslug}','HomeController@categoryBooksDetail')->name('categorybookdetail');
+
+
+Route::group(['middleware' => ['auth']],function(){
+Route::post('suscription-category' , 'HomeController@suscriptionCategory');
+});
 
 //PRACTICA DE RUTAS
 Route::get('/saludo',function(){
@@ -115,15 +144,60 @@ Resource except
 */
 //Route::resource('resource','ResourceController',['except'=>'index']);
 
-Route::group(['prefix'=>'admin' , 'as'=>'admin.'],function(){
-	Route::resource('role','RoleController');
-	Route::resource('category','CategoryController');
-});
+
 
 
 
 
 Route::get('/vista-simple', 'PruebaController@getVista')->name('vistasimple');
+
+
+
+/*
+INICIO DEL PROYECTO
+*/
+
+
+Route::group(['middleware'=>['auth','check-admin']],function(){
+		
+		Route::group(['middleware'=>['check-day:6-0-1']],function(){
+			Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+		});
+
+			Route::group(['prefix'=>'admin' , 'as'=>'admin.'],function(){
+				Route::resource('role','Cruds\RoleController');
+				Route::resource('category','Cruds\CategoryController');
+			});
+
+});
+
+
+
+
+
+
+
+Route::group(['prefix'=>'articles' , 'as'=>'articles.','middleware' => ['auth']],function(){
+
+	Route::resource('book','BookController');
+	Route::get('book-datatable','BookController@datatable');
+
+	
+
+});
+
+
+Route::group(['middleware' => ['auth']],function(){
+
+Route::post('report','HomeController@report');
+});
+
+Route::get('books/{file}', function ($file = null) { 
+ 	$url = storage_path() . "/app/public/books/{$file}"; 
+ 	if (file_exists($url)) {
+ 		return Response::download($url);
+ 	}
+});
 
 
 

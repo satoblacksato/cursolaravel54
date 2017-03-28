@@ -9,6 +9,12 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+
+     protected $events=[
+            'created' => Events\UserCreatedEvent::class,
+        ];
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -38,5 +44,14 @@ class User extends Authenticatable
     }
 
 
+      //relaciones
+    public function user_categories(){
+        return $this->hasMany(CategoryUser::class,'user_id','id');
+    }
+
+
+    public function isAdmin(){
+            return  $this->role->id == env('ROLE_ADMIN');
+    }
 
 }

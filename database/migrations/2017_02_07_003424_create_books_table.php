@@ -17,7 +17,7 @@ class CreateBooksTable extends Migration
             $table->increments('id');
             $table->string('title',50);
             $table->string('image',200);
-            $table->string('description',250);
+            $table->string('description',500);
             $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->softDeletes();
