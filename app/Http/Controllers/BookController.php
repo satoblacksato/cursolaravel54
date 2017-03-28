@@ -156,12 +156,11 @@ public function datatable(Request $request){
 
 
       return  Datatables::of(
-                    Book::select('id','title','description','user_id')->get()
+                    Book::where('user_id','=',\Auth::user()->id)
+                            ->select('id','title','description')->get()
         )
            ->addColumn('actions', function ($query) {
-                return  "
-                <a href='/articles/book/'.$query->id.'/edit'  class='btn btn-primary btn-xs' >EDT</a>
-                &nbsp;".'<a href="#"
+                return  '<a href="/articles/book/'.$query->id.'/edit"  class="btn btn-primary btn-xs" >EDT</a>&nbsp;<a href="#"
                 onclick="viewModal('.$query->id.')"   class="btn btn-warning btn-xs" >VER</a>
                    
                    <form action="/articles/book/'.$query->id.'" method="POST">

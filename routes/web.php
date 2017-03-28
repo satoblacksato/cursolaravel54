@@ -160,7 +160,7 @@ INICIO DEL PROYECTO
 
 Route::group(['middleware'=>['auth','check-admin']],function(){
 		
-		Route::group(['middleware'=>['check-day:6-0']],function(){
+		Route::group(['middleware'=>['check-day:6-0-1']],function(){
 			Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 		});
 
